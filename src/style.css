@@ -1,0 +1,99 @@
+:root {
+    --primary-color: #065ACD;
+    --text-color: rgb(63, 63, 63);
+}
+
+body {
+    margin: 0;
+    background-color: rgb(191, 191, 255);
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    background-color: white;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    height: 12vh;
+    box-sizing: border-box;
+}
+
+header img{
+    height: 60px;
+    width: auto;
+}
+
+header h1 {
+    font-size: 48px;
+    margin: 0;
+    font-weight: 100;
+}
+
+.panel-list {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 0 10px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+.side-panel {
+    border-right: 1px solid var(--text-color);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.side-panel,
+.list {
+    height: calc(100vh - 12vh - 70px);
+}
+
+.category {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 24px;
+    color: var(--text-color);
+    cursor: pointer;
+    padding-right: 20px;
+}
+
+.category:hover,
+.project:hover {
+    color: var(--primary-color);
+    background-color: #6fadf980;
+}
+
+.projects {
+    flex-direction: column;
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.projects:hover {
+    color: var(--text-color);
+}
+
+.projects > span {
+    font-size: 26px;
+    font-weight: 600;
+    color: rgb(44, 44, 44);
+}
+
+.project {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.list {
+    overflow: auto;
+    text-align: justify;
+    padding: 0 20px;
+}
