@@ -12,17 +12,20 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding: 10px 20px;
     margin-bottom: 15px;
     background-color: white;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
     height: 12vh;
     box-sizing: border-box;
 }
 
-header img{
+.logo-text {
+    display: flex;
+}
+
+header img,
+header svg{
     height: 60px;
     width: auto;
 }
@@ -31,6 +34,14 @@ header h1 {
     font-size: 48px;
     margin: 0;
     font-weight: 100;
+}
+
+header svg {
+    fill: var(--primary-color);
+}
+
+header svg:hover {
+    scale: 1.05;
 }
 
 .panel-list {
