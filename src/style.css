@@ -109,20 +109,19 @@ header svg:hover {
     overflow: auto;
     text-align: justify;
     padding: 0 20px;
+}
+
+.todo-items {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
 }
 
-.todo-heading {
-    grid-column-start: 1;
-    grid-column-end: 3;   
-}
-
 .todo-item {
-    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.1);
     padding: 20px;
     border-radius: 20px;
+    height: fit-content;
 }
 
 .todo-item svg {
@@ -134,6 +133,8 @@ header svg:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0;
+    height: 35px;
 }
 
 .buttons {
