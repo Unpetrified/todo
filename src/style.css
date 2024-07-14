@@ -179,12 +179,15 @@ header svg:hover {
     background-color: white;
     box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
-    display: flex;
+    display: none;
     flex-direction: column;
     z-index: 2;
-    scale: 0.25;
+    scale: 1;
     transition: 100ms ease-in-out;
-    display: none;
+}
+
+.state {
+    display: flex;
 }
 
 .pop-up svg {
@@ -285,6 +288,6 @@ form input[type="submit"]:hover {
     scale: 1.05;
 }
 
-.todo-fiedld, .notes-field, .project-field {
+.hidden-field {
     display: none;
 } 
