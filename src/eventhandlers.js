@@ -5,7 +5,9 @@ const open_form = document.querySelector("header svg"),
       open_todo_form = document.querySelector(".open-todo"),
       open_project_form = document.querySelector(".open-project"),
       open_note_form = document.querySelector(".open-note"),
-      close_form = document.querySelector(".pop-up svg");
+      close_form = document.querySelector(".pop-up svg"),
+      projects_section = document.querySelector(".projects"),
+      projects = document.querySelectorAll(".project");
 
 
 open_form.addEventListener("click", () => {
@@ -13,11 +15,8 @@ open_form.addEventListener("click", () => {
     pop_form.classList.add("state");
 });
 
-categories.forEach(category => {
-    category.addEventListener("click", (e) => {
-        e.target.classList.toggle("active");
-    })
-});
+toggleCategories(categories);
+toggleCategories(projects);
 
 open_todo_form.addEventListener("click", toggleFormField);
 open_note_form.addEventListener("click", toggleFormField);
@@ -58,4 +57,19 @@ function toggleFormField(e) {
             project_field.classList.remove("hidden-field");
             break
     }
+}
+
+function toggleCategories(categories) {
+    categories.forEach(category => {
+        category.addEventListener("click", (e) => {
+
+            categories.forEach(c => {
+                c.classList.remove("active")
+            })
+
+            if (category === projects_section) return;
+    
+            category.classList.add("active");
+        })
+    });
 }

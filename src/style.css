@@ -66,7 +66,8 @@ header svg:hover {
     height: calc(100vh - 12vh - 70px);
 }
 
-.category {
+.category,
+.projects {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -80,7 +81,6 @@ header svg:hover {
     flex-direction: column;
     gap: 20px;
     margin: 25px 0;
-    margin-right: 20px;
 }
 
 .projects > span {
@@ -103,12 +103,17 @@ header svg:hover {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    font-size: 20px;
 }
 
 .list {
     overflow: auto;
     text-align: justify;
     padding: 0 20px;
+}
+
+.todo-heading {
+    margin-top: 0;
 }
 
 .todo-items {
