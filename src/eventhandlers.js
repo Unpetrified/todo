@@ -1,4 +1,7 @@
-const open_form = document.querySelector("header svg"),
+import formFieldGenerator from "./formsection";
+
+const form = document.querySelector("form"),
+      open_form = document.querySelector("header svg"),
       pop_form = document.querySelector(".pop-up"),
       blanket = document.querySelector(".blanket"),
       categories = document.querySelectorAll(".category"),
@@ -11,8 +14,13 @@ const open_form = document.querySelector("header svg"),
 
 
 open_form.addEventListener("click", () => {
+
+    form.append(formFieldGenerator.todo());
+    form.append(formFieldGenerator.submit("Make Todo"));
+    
     blanket.style.display = "block";
     pop_form.classList.add("state");
+
 });
 
 toggleCategories(categories);
@@ -24,18 +32,13 @@ open_project_form.addEventListener("click", toggleFormField);
 
 close_form.addEventListener("click", () => {
     blanket.style.display = "none";
+    form.innerHTML = "";
     pop_form.classList.remove("state");
 })
 
 function toggleFormField(e) {
-    const todo_field = document.querySelector(".todo-field"),
-          notes_field = document.querySelector(".notes-field"),
-          project_field = document.querySelector(".project-field");
 
-    // hide all fields
-    todo_field.classList.add("hidden-field");
-    notes_field.classList.add("hidden-field");
-    project_field.classList.add("hidden-field");
+    form.innerHTML = "";
 
     // remove tab indicator
     open_todo_form.classList.remove("active-form");
@@ -46,15 +49,18 @@ function toggleFormField(e) {
     e.target.classList.add("active-form");
     switch (e.target) {
         case open_todo_form:
-            todo_field.classList.remove("hidden-field");
+            form.append(formFieldGenerator.todo());
+            form.append(formFieldGenerator.submit("Make Todo"));
             break
         
         case open_note_form:
-            notes_field.classList.remove("hidden-field");
+            form.append(formFieldGenerator.note());
+            form.append(formFieldGenerator.submit("Create Note"));
             break
         
         default:
-            project_field.classList.remove("hidden-field");
+            form.append(formFieldGenerator.project());
+            form.append(formFieldGenerator.submit("Create Project"));
             break
     }
 }

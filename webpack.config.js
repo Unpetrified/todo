@@ -2,9 +2,12 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/script.js', // Entry point
+    entry: {
+      events : "./src/eventhandlers.js",
+      index : "./src/script.js",
+    }, // Entry point
     output: {
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
         clean: true, // Clean the output directory before emit
     },
