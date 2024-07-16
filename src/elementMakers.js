@@ -11,6 +11,7 @@ function getInput(id, type, name="", value="") {
     const input = document.createElement("input");
     input.setAttribute("id", id);
     input.setAttribute("type", type);
+    input.setAttribute("required", true)
 
     return input
 }
@@ -20,6 +21,7 @@ function getTextArea(id, name, rows) {
     text_area.setAttribute("id", id);
     text_area.setAttribute("name", name);
     text_area.setAttribute("rows", rows);
+    text_area.setAttribute("required", true)
 
     return text_area
 }

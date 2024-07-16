@@ -1,4 +1,6 @@
 import formFieldGenerator from "./formsection";
+import updateFiles from "./script";
+import { Notes, Project, Todo} from "./datamodels";
 
 const form = document.querySelector("form"),
       open_form = document.querySelector("header svg"),
@@ -87,3 +89,41 @@ function toggleCategories(categories) {
         })
     });
 }
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    let field = e.target.firstChild.classList[0];
+    
+    switch (field) {
+        case "todo-field":
+            let todo_title = document.querySelector("#title").value,
+                todo_description = document.querySelector("#description").value,
+                due_date = document.querySelector("#due-date").value,
+                priority = document.querySelector('input[name="priority"]:checked').value,
+                todo_project_affliation = document.querySelector("#affliation").value,
+                todo = new Todo(todo_title, todo_description, due_date, priority, todo_project_affliation);
+
+            updateFiles(todo_title, todo, "todos");
+
+            break;
+
+        case "notes-field":
+            let note_title = document.querySelector("#title").value,
+                note_description = document.querySelector("#description").value,
+                note_project_affliation = document.querySelector("#affliation").value,
+                note = new Notes(note_title, note_description, note_project_affliation);
+
+                updateFiles(note_title, note, "notes");
+
+            break;
+
+        default:
+            let project_title = document.querySelector("#title").value,
+            project = new Project(project_title);
+
+            updateFiles(project_title, project, "projects");
+
+            break;
+    }
+})
