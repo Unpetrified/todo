@@ -15,8 +15,7 @@ const form = document.querySelector("form"),
 
 open_form.addEventListener("click", () => {
 
-    form.append(formFieldGenerator.todo());
-    form.append(formFieldGenerator.submit("Make Todo"));
+   toggleFormField(true);
     
     blanket.style.display = "block";
     pop_form.classList.add("state");
@@ -26,9 +25,9 @@ open_form.addEventListener("click", () => {
 toggleCategories(categories);
 toggleCategories(projects);
 
-open_todo_form.addEventListener("click", toggleFormField);
-open_note_form.addEventListener("click", toggleFormField);
-open_project_form.addEventListener("click", toggleFormField);
+open_todo_form.addEventListener("click", (ev) => toggleFormField(false, ev));
+open_note_form.addEventListener("click", (ev) => toggleFormField(false, ev));
+open_project_form.addEventListener("click", (ev) => toggleFormField(false, ev));
 
 close_form.addEventListener("click", () => {
     blanket.style.display = "none";
@@ -36,7 +35,7 @@ close_form.addEventListener("click", () => {
     pop_form.classList.remove("state");
 })
 
-function toggleFormField(e) {
+function toggleFormField(manual, e="") {
 
     form.innerHTML = "";
 
@@ -44,6 +43,15 @@ function toggleFormField(e) {
     open_todo_form.classList.remove("active-form");
     open_note_form.classList.remove("active-form");
     open_project_form.classList.remove("active-form");
+    
+    // set todo field as default when the form is opened
+    if (manual) {
+        form.append(formFieldGenerator.todo());
+        form.append(formFieldGenerator.submit("Make Todo"));
+        open_todo_form.classList.add("active-form");
+
+        return
+    } 
     
     // display the form field corresponding with the clicked formtype
     e.target.classList.add("active-form");
