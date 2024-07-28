@@ -1,6 +1,8 @@
 import formFieldGenerator from "./formsection";
-import updateFiles from "./script";
 import { Notes, Project, Todo} from "./datamodels";
+import updateFiles from "./updatefiles";
+import { getProject, saveProject } from "./localStorageQuery";
+import { updateCount, updateProjectsList } from "./uimodifier";
 
 const form = document.querySelector("form"),
       open_form = document.querySelector("header svg"),
@@ -31,11 +33,7 @@ open_todo_form.addEventListener("click", (ev) => toggleFormField(false, ev));
 open_note_form.addEventListener("click", (ev) => toggleFormField(false, ev));
 open_project_form.addEventListener("click", (ev) => toggleFormField(false, ev));
 
-close_form.addEventListener("click", () => {
-    blanket.style.display = "none";
-    form.innerHTML = "";
-    pop_form.classList.remove("state");
-})
+close_form.addEventListener("click", closeForm)
 
 function toggleFormField(manual, e="") {
 
@@ -75,7 +73,7 @@ function toggleFormField(manual, e="") {
     }
 }
 
-function toggleCategories(categories) {
+export function toggleCategories(categories) {
     categories.forEach(category => {
         category.addEventListener("click", (e) => {
 
@@ -102,9 +100,9 @@ form.addEventListener("submit", (e) => {
                 due_date = document.querySelector("#due-date").value,
                 priority = document.querySelector('input[name="priority"]:checked').value,
                 todo_project_affliation = document.querySelector("#affliation").value,
-                todo = new Todo(todo_title, todo_description, due_date, priority, todo_project_affliation);
+                todo = new Todo(todo_title, todo_description, due_date, priority);
 
-            updateFiles(todo_title, todo, "todos");
+            updateFiles(todo, todo_project_affliation);
 
             break;
 
@@ -112,18 +110,38 @@ form.addEventListener("submit", (e) => {
             let note_title = document.querySelector("#title").value,
                 note_description = document.querySelector("#description").value,
                 note_project_affliation = document.querySelector("#affliation").value,
-                note = new Notes(note_title, note_description, note_project_affliation);
+                note = new Notes(note_title, note_description);
 
-                updateFiles(note_title, note, "notes");
+                updateFiles(note, note_project_affliation);
 
             break;
 
         default:
-            let project_title = document.querySelector("#title").value,
-            project = new Project(project_title);
+            let projects = getProject();
 
-            updateFiles(project_title, project, "projects");
+            let project_title = document.querySelector("#title").value;
+            
+            let existing_project = projects.filter(project => project.title.toLowerCase() === project_title.toLowerCase());
+            
+            if(existing_project.length === 0) {
+                let project = new Project(project_title, []);
+
+                projects.push(project);   
+            }
+
+            saveProject(projects);
 
             break;
     }
+
+    closeForm()
+
 })
+
+function closeForm() {
+    blanket.style.display = "none";
+    form.innerHTML = "";
+    pop_form.classList.remove("state");
+    updateCount();
+    updateProjectsList();
+}

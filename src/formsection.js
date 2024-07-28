@@ -1,6 +1,6 @@
 import makers from "./elementMakers";
 
-function todoFieldGenerator(project="todo") {
+function todoFieldGenerator(project="todos") {
     const todo_form = document.createElement("fieldset");
     todo_form.classList.add("todo-field");
 
@@ -64,7 +64,7 @@ function projectFieldGenerator() {
     return project_form
 }
 
-function noteFieldGenerator(project="note") {
+function noteFieldGenerator(project="notes") {
     const note_form = document.createElement("fieldset");
     note_form.classList.add("notes-field");
 

@@ -5,6 +5,7 @@ module.exports = {
     entry: {
       events : "./src/eventhandlers.js",
       index : "./src/script.js",
+      ui : "./src/uimodifier.js",
     }, // Entry point
     output: {
         filename: '[name].bundle.js',
