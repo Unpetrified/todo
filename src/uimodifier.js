@@ -1,4 +1,3 @@
-import { toggleCategories } from "./eventhandlers";
 import { getProject } from "./localStorageQuery";
 
 // let notes = projects.filter(project => project.title.toLowerCase() === "notes");
@@ -15,7 +14,7 @@ export function updateCount() {
     document.querySelector(".notes span:last-of-type").textContent = notes.data.length;
 }
 
-updateProjectsList();
+// updateProjectsList();
 export function updateProjectsList() {
     let projects = getProject();
     projects_panel.innerHTML = "";
@@ -46,7 +45,4 @@ export function updateProjectsList() {
 
         projects_panel.append(div)
     }
-
-    let categories = document.querySelectorAll(".category");
-    toggleCategories(categories);
 }

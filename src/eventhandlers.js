@@ -73,7 +73,7 @@ function toggleFormField(manual, e="") {
     }
 }
 
-export function toggleCategories(categories) {
+function toggleCategories(categories) {
     categories.forEach(category => {
         category.addEventListener("click", (e) => {
 
@@ -91,8 +91,10 @@ export function toggleCategories(categories) {
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    let field = e.target.firstChild.classList[0];
-    
+    let active = document.querySelector("form>fieldset");
+
+    let field = active.className;
+
     switch (field) {
         case "todo-field":
             let todo_title = document.querySelector("#title").value,
@@ -134,7 +136,7 @@ form.addEventListener("submit", (e) => {
             break;
     }
 
-    closeForm()
+    closeForm();
 
 })
 
@@ -145,3 +147,7 @@ function closeForm() {
     updateCount();
     updateProjectsList();
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+   updateProjectsList();
+});
