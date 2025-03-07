@@ -1,6 +1,6 @@
 import "./style.css";
 import logo from "./assets/icon.png";
-import { Project } from "./datamodels";
+import { Project } from "./AppLogic/datamodels";
 
 document.querySelector(".logo-text img").setAttribute("src", logo);
 

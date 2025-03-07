@@ -1,4 +1,4 @@
-import { getProject } from "./localStorageQuery";
+import { getProject } from "../AppLogic/localStorageQuery";
 
 // let notes = projects.filter(project => project.title.toLowerCase() === "notes");
 const projects_panel = document.querySelector(".projects");

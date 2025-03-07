@@ -1,7 +1,7 @@
-import formFieldGenerator from "./formsection";
-import { Notes, Project, Todo} from "./datamodels";
-import updateFiles from "./updatefiles";
-import { getProject, saveProject } from "./localStorageQuery";
+import formFieldGenerator from "./formgenerator";
+import { Notes, Project, Todo} from "../AppLogic/datamodels";
+import updateFiles from "../AppLogic/updatefiles";
+import { getProject, saveProject } from "../AppLogic/localStorageQuery";
 import { updateCount, updateProjectsList } from "./uimodifier";
 
 const form = document.querySelector("form"),
@@ -84,6 +84,8 @@ function toggleCategories(categories) {
             if (category === projects_section) return;
     
             category.classList.add("active");
+            
+            
         })
     });
 }
@@ -105,6 +107,9 @@ form.addEventListener("submit", (e) => {
                 todo = new Todo(todo_title, todo_description, due_date, priority);
 
             updateFiles(todo, todo_project_affliation);
+            // date.toJSON().slice(0, 10) return the current date as a string which can be compared to due date
+            // for the today section of the app
+            
 
             break;
 

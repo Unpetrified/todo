@@ -8,11 +8,21 @@ export class Todo {
 
 }
 
+Todo.prototype.getProperties = function() {
+    const properties = {"title" : this.title, "description" : this.description, "due date" : this.due_date, "priority" : this.priority}
+    return properties
+}
+
 export class Notes {
     constructor(title, description) {
         this.title = title;
         this.description = description;
     }
+}
+
+Notes.prototype.getProperties = function() {
+    const properties = {"title" : this.title, "description" : this.description}
+    return properties
 }
 
 export class Project {

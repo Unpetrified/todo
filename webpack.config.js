@@ -3,9 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-      events : "./src/eventhandlers.js",
+      events : "./src/DomManipulation/eventhandlers.js",
       index : "./src/script.js",
-      ui : "./src/uimodifier.js",
+      ui : "./src/DomManipulation/uimodifier.js",
     }, // Entry point
     output: {
         filename: '[name].bundle.js',
