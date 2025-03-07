@@ -1,6 +1,6 @@
 import { getProject } from "../AppLogic/localStorageQuery";
+import domGenerator from "./domgenerator";
 
-// let notes = projects.filter(project => project.title.toLowerCase() === "notes");
 const projects_panel = document.querySelector(".projects");
 
 updateCount();
@@ -44,5 +44,40 @@ export function updateProjectsList() {
         div.append(span_count);
 
         projects_panel.append(div)
+    }
+}
+// [
+// {"title":"Todos",
+// "data":[{"title":"Print form","description":"Remember to print it on your way home","due_date":"2025-03-08","priority":"medium"},
+// {"title":"Go see naza","description":"She is a bitch","due_date":"2025-03-26","priority":"high"}
+// ]},
+// 
+// {"title":"Notes",
+// "data":[
+// {"title":"Type","description":"I am tired\n"},
+// {"title":"Another one","description":"This is a new note\n"}
+// ]},
+// 
+// {"title":"Build software",
+// "data":[]},
+// {"title":"Write a book",
+// "data":[]},
+// {"title":"Have some fun",
+// "data":[]}]
+export function updateProjectSection(section_heading) {
+    let project_list = getProject().filter(project => project.title.toLowerCase() === section_heading.toLowerCase())[0].data;
+
+    switch (section_heading) {
+        case "todos":
+            domGenerator.todos(project_list);
+            break;
+        
+        case "notes":
+            domGenerator.notes(project_list);
+            break;
+    
+        default:
+            domGenerator.projects(project_list, section_heading);
+            break;
     }
 }

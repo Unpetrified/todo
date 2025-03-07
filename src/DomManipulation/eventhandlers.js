@@ -2,7 +2,7 @@ import formFieldGenerator from "./formgenerator";
 import { Notes, Project, Todo} from "../AppLogic/datamodels";
 import updateFiles from "../AppLogic/updatefiles";
 import { getProject, saveProject } from "../AppLogic/localStorageQuery";
-import { updateCount, updateProjectsList } from "./uimodifier";
+import { updateCount, updateProjectsList, updateProjectSection } from "./uimodifier";
 
 const form = document.querySelector("form"),
       open_form = document.querySelector("header svg"),
@@ -85,10 +85,12 @@ function toggleCategories(categories) {
     
             category.classList.add("active");
             
-            
+            updateProjectSection(category.getAttribute("id"));
         })
     });
 }
+
+
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
