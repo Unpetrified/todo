@@ -8,13 +8,14 @@ const form = document.querySelector("form"),
       open_form = document.querySelector("header svg"),
       pop_form = document.querySelector(".pop-up"),
       blanket = document.querySelector(".blanket"),
-      categories = document.querySelectorAll(".category"),
       open_todo_form = document.querySelector(".open-todo"),
       open_project_form = document.querySelector(".open-project"),
       open_note_form = document.querySelector(".open-note"),
       close_form = document.querySelector(".pop-up svg"),
       projects_section = document.querySelector(".projects"),
       projects = document.querySelectorAll(".project");
+
+let categories = document.querySelectorAll(".category");
 
 
 open_form.addEventListener("click", () => {
@@ -81,16 +82,12 @@ function toggleCategories(categories) {
                 c.classList.remove("active")
             })
 
-            if (category === projects_section) return;
-    
             category.classList.add("active");
             
             updateProjectSection(category.getAttribute("id"));
         })
     });
 }
-
-
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -109,9 +106,7 @@ form.addEventListener("submit", (e) => {
                 todo = new Todo(todo_title, todo_description, due_date, priority);
 
             updateFiles(todo, todo_project_affliation);
-            // date.toJSON().slice(0, 10) return the current date as a string which can be compared to due date
-            // for the today section of the app
-            
+            updateProjectSection("todos");
 
             break;
 
@@ -122,7 +117,8 @@ form.addEventListener("submit", (e) => {
                 note = new Notes(note_title, note_description);
 
                 updateFiles(note, note_project_affliation);
-
+                updateProjectSection("notes");
+                
             break;
 
         default:
@@ -144,6 +140,7 @@ form.addEventListener("submit", (e) => {
     }
 
     closeForm();
+    updateCategories();
 
 })
 
@@ -155,6 +152,13 @@ function closeForm() {
     updateProjectsList();
 }
 
+function updateCategories() {
+    categories = document.querySelectorAll(".category");
+    toggleCategories(categories);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
    updateProjectsList();
+   updateProjectSection("todos");
+   updateCategories();
 });

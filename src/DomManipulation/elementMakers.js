@@ -26,6 +26,22 @@ function getTextArea(id, name, rows) {
     return text_area
 }
 
+function getSelection(choices) {
+    let select = document.createElement("select");
+    select.setAttribute("id", "affliation");
+    select.setAttribute("required", true);
+
+    choices.forEach(choice => {
+        let option = document.createElement("option");
+        option.setAttribute("value", choice.title.toLowerCase());
+        option.textContent = choice.title;
+        select.append(option);
+    });
+
+    return select
+}
+
+
 function getSectionHeading(section_heading) {
     let section_head = document.createElement("h2");
     section_head.setAttribute("class", "todo-heading");
@@ -108,6 +124,7 @@ const makers = {
     "getLabel" : getLabel, 
     "getInput" : getInput,
     "getTextArea" : getTextArea,
+    "getSelection" : getSelection,
     "getSectionHeading" : getSectionHeading,
     "getProjectContainer" : getProjectContainer,
     "getProjectCard" : getProjectCard,

@@ -1,5 +1,26 @@
+import { getProject } from "../AppLogic/localStorageQuery";
 import makers from "./elementMakers";
+// [
+// {"title":"Todos",
+// "data":[
+// {"title":"Print form","description":"Remember to print it on your way home","due_date":"2025-03-08","priority":"medium"},
+// {"title":"Go see naza","description":"She is a bitch","due_date":"2025-03-26","priority":"high"}
+// ]},
+// 
+// {"title":"Notes",
+// "data":[
+// {"title":"Type","description":"I am tired\n"},
+// {"title":"Another one","description":"This is a new note\n"}
+// ]},
+// 
+// {"title":"Build software",
+// "data":[]},
 
+// {"title":"Write a book",
+// "data":[]},
+
+// {"title":"Have some fun",
+// "data":[]}]
 function todoFieldGenerator(project="todos") {
     const todo_form = document.createElement("fieldset");
     todo_form.classList.add("todo-field");
@@ -13,9 +34,9 @@ function todoFieldGenerator(project="todos") {
     const due_date_label = makers.getLabel("due-date", "Due Date");
     const due_date_input = makers.getInput("due-date", "date");
 
-    const project_affliation = makers.getInput("affliation", "text");
+    const activeTodoProjects = getProject().filter(project => project.title.toLowerCase() !== "notes");
+    const project_affliation = makers.getSelection(activeTodoProjects);
     project_affliation.setAttribute("value", project);
-    project_affliation.style.display = "none";
 
     const priority = document.createElement("fieldset");
     const legend = document.createElement("legend");
@@ -36,8 +57,7 @@ function todoFieldGenerator(project="todos") {
 
         const label = makers.getLabel( "priority", priority_list[i]);
         const wrapper = document.createElement("span");
-        wrapper.append(input);
-        wrapper.append(label)
+        wrapper.append(input, label);
         priority.append(wrapper);
     }
 

@@ -3,36 +3,34 @@ import domGenerator from "./domgenerator";
 
 const projects_panel = document.querySelector(".projects");
 
-updateCount();
 export function updateCount() {
-
     let projects = getProject();
-    let todos = projects[0];
-    let notes = projects[1];
+    let todos = projects.filter(project => project.title.toLowerCase() === "todos")[0];
+    let notes = projects.filter(project => project.title.toLowerCase() === "notes")[0];
     
     document.querySelector(".todos span:last-of-type").textContent = todos.data.length;
     document.querySelector(".notes span:last-of-type").textContent = notes.data.length;
 }
 
-// updateProjectsList();
-export function updateProjectsList() {
-    let projects = getProject();
-    projects_panel.innerHTML = "";
+updateCount();
 
-    if(projects.length < 2) {
-        return
-    }
+
+export function updateProjectsList() {
+
+    let projects = getProject().filter(project => project.title.toLowerCase() !== "todos" && project.title.toLowerCase() !== "notes" );
+    projects_panel.innerHTML = "";
 
     let span = document.createElement("span");
     span.textContent = "Projects";
     projects_panel.append(span);
 
-    for (let i = 2; i < projects.length; i++) {
+    for (let i = 0; i < projects.length; i++) {
         const project = projects[i];
         
         let div = document.createElement("div");
         div.classList.add("project");
         div.classList.add("category");
+        div.setAttribute("id", project.title);
 
         let span_name = document.createElement("span");
         span_name.textContent = project.title;
@@ -46,24 +44,9 @@ export function updateProjectsList() {
         projects_panel.append(div)
     }
 }
-// [
-// {"title":"Todos",
-// "data":[{"title":"Print form","description":"Remember to print it on your way home","due_date":"2025-03-08","priority":"medium"},
-// {"title":"Go see naza","description":"She is a bitch","due_date":"2025-03-26","priority":"high"}
-// ]},
-// 
-// {"title":"Notes",
-// "data":[
-// {"title":"Type","description":"I am tired\n"},
-// {"title":"Another one","description":"This is a new note\n"}
-// ]},
-// 
-// {"title":"Build software",
-// "data":[]},
-// {"title":"Write a book",
-// "data":[]},
-// {"title":"Have some fun",
-// "data":[]}]
+
+updateProjectsList();
+
 export function updateProjectSection(section_heading) {
     let project_list = getProject().filter(project => project.title.toLowerCase() === section_heading.toLowerCase())[0].data;
 
@@ -75,6 +58,12 @@ export function updateProjectSection(section_heading) {
         case "notes":
             domGenerator.notes(project_list);
             break;
+
+        // case "today":
+        //     let date = new Date().toJSON().slice(0, 10),
+        //         allTodos = getProject().filter(project => project.title.toLowerCase() !== "notes");
+
+        //     break
     
         default:
             domGenerator.projects(project_list, section_heading);

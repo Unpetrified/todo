@@ -5,6 +5,12 @@ export function getProject() {
 
     // convert the array items back to a project object
     let restored_projects = [];
+    
+    if (projects_from_storage === null) {
+        restored_projects = [{"title":"Todos","data":[]},{"title":"Notes","data":[]}];
+        return restored_projects
+    };
+
     for (let index = 0; index < projects_from_storage.length; index++) {
         const element = projects_from_storage[index];
         let restored_project_object = new Project(element.title, element.data);
