@@ -5,7 +5,7 @@
 
 body {
     margin: 0;
-    background-color: rgb(191, 191, 255);
+    background-color: rgb(190, 190, 190);
     overflow: hidden;
 }
 
@@ -15,8 +15,8 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    margin-bottom: 15px;
-    background-color: white;
+    margin-bottom: 5px;
+    background-color: rgb(190, 190, 190);
     height: 12vh;
     box-sizing: border-box;
 }
@@ -46,7 +46,7 @@ header svg:hover {
 }
 
 .panel-list {
-    background-color: white;
+    background-color: rgb(190, 190, 190);
     border-radius: 20px;
     padding: 20px;
     margin: 0 10px;
@@ -59,6 +59,7 @@ header svg:hover {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    overflow: scroll;
 }
 
 .side-panel,
@@ -75,6 +76,12 @@ header svg:hover {
     color: var(--text-color);
     cursor: pointer;
     margin-right: 20px;
+}
+
+.category span:first-of-type{
+    white-space: nowrap;       /* Prevent text from wrapping */
+    overflow: hidden;          /* Hide overflow */
+    text-overflow: ellipsis;   /* Add ellipsis to truncated text */
 }
 
 .projects {
@@ -114,6 +121,10 @@ header svg:hover {
 
 .todo-heading {
     margin-top: 0;
+}
+
+.todo-heading path {
+    pointer-events: none;
 }
 
 .todo-items {
@@ -162,6 +173,7 @@ header svg:hover {
     scale: 1.05;
     background-color: var(--primary-color);
     color: white;
+    padding: 0 10px;
 }
 
 .blanket {
@@ -253,7 +265,7 @@ form > fieldset {
 }
 
 form fieldset > input,
-textarea {
+textarea, select {
     border: none;
     background-color: rgb(233, 233, 233);
     border-radius: 15px;
@@ -277,6 +289,10 @@ form fieldset > label:first-of-type {
 
 fieldset {
     width: 100%;
+}
+
+select, label {
+    text-transform: capitalize;
 }
 
 form input[type="submit"] {

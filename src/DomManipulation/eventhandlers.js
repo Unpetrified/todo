@@ -1,6 +1,6 @@
 import formFieldGenerator from "./formgenerator";
 import { Notes, Project, Todo} from "../AppLogic/datamodels";
-import updateFiles from "../AppLogic/updatefiles";
+import { deleteItem, editItem, updateFiles } from "../AppLogic/updatefiles";
 import { getProject, saveProject } from "../AppLogic/localStorageQuery";
 import { updateCount, updateProjectsList, updateProjectSection } from "./uimodifier";
 
@@ -12,11 +12,10 @@ const form = document.querySelector("form"),
       open_project_form = document.querySelector(".open-project"),
       open_note_form = document.querySelector(".open-note"),
       close_form = document.querySelector(".pop-up svg"),
-      projects_section = document.querySelector(".projects"),
       projects = document.querySelectorAll(".project");
 
-let categories = document.querySelectorAll(".category");
-
+let categories = document.querySelectorAll(".category"),
+    editBtns, deleteBtns;
 
 open_form.addEventListener("click", () => {
 
@@ -101,9 +100,8 @@ form.addEventListener("submit", (e) => {
             let todo_title = document.querySelector("#title").value,
                 todo_description = document.querySelector("#description").value,
                 due_date = document.querySelector("#due-date").value,
-                priority = document.querySelector('input[name="priority"]:checked').value,
                 todo_project_affliation = document.querySelector("#affliation").value,
-                todo = new Todo(todo_title, todo_description, due_date, priority);
+                todo = new Todo(todo_title, todo_description, due_date);
 
             updateFiles(todo, todo_project_affliation);
             updateProjectSection("todos");
@@ -157,8 +155,23 @@ function updateCategories() {
     toggleCategories(categories);
 }
 
+function getEditDelBtns() {
+    editBtns = document.querySelectorAll("#edit-btn");
+    deleteBtns = document.querySelectorAll("#delete-btn");
+    
+    editBtns.forEach(editBtn => {
+        editBtn.addEventListener("click", editItem)
+    })
+    
+    deleteBtns.forEach(deleteBtn => {
+        deleteBtn.addEventListener("click", deleteItem)
+    })
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-   updateProjectsList();
-   updateProjectSection("todos");
-   updateCategories();
+    document.querySelector("#todos").classList.add("active");
+    updateProjectsList();
+    updateProjectSection("todos");
+    updateCategories();
 });
+

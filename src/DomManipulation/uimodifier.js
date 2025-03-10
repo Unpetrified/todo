@@ -48,6 +48,7 @@ export function updateProjectsList() {
 updateProjectsList();
 
 export function updateProjectSection(section_heading) {
+
     let project_list = getProject().filter(project => project.title.toLowerCase() === section_heading.toLowerCase())[0].data;
 
     switch (section_heading) {
@@ -58,15 +59,9 @@ export function updateProjectSection(section_heading) {
         case "notes":
             domGenerator.notes(project_list);
             break;
-
-        // case "today":
-        //     let date = new Date().toJSON().slice(0, 10),
-        //         allTodos = getProject().filter(project => project.title.toLowerCase() !== "notes");
-
-        //     break
     
         default:
-            domGenerator.projects(project_list, section_heading);
+            domGenerator.todos(project_list, section_heading);
             break;
     }
 }
