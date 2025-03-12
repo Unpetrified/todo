@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskHub</title>
+<script defer src="events.bundle.js"></script><script defer src="index.bundle.js"></script><script defer src="ui.bundle.js"></script></head>
+<body>
+    <header>
+        <div class="logo-text">
+            <img alt="Website Icon">
+            <h1>TaskHub</h1>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus-circle</title><path d="M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>
+    </header>
+    <section class="panel-list">
+        <section class="side-panel">
+            <div  class="todos category" id="todos">
+                <span>Todos</span>
+                <span>0</span>
+            </div>
+            <div class="projects"></div>
+            <div class="notes category" id="notes">
+                <span>Notes</span>
+                <span>0</span>
+            </div>
+        </section>
+        <section class="list">
+    
+        </section>
+    </section>
+    <section class="pop-up">
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+
+
+        <div class="form-type">
+            <button class="open-todo active-form">Todo</button>
+            <button class="open-project">Project</button>
+            <button class="open-note">Note</button>
+        </div>
+
+        <form></form>
+        
+    </section>
+    <div class="blanket"></div>
+</body>
+</html>
