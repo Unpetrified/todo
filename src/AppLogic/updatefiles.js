@@ -20,33 +20,29 @@ export function updateFiles(data, project_destination) {
 }
 
 export function deleteItem(e) {
-    console.log("clicked");
+    console.log("Delete");
     
-    let allProjects = getProject(),
-        project_title = e.currentTarget.parentNode.parentNode.parentNode.parentNode.parentNode.firstChild.textContent, // get project containing item
-        item_title = e.currentTarget.closest(".todo-item-heading").firstChild.textContent,
-        project_in_storage = allProjects.filter(project => project.title === project_title)[0],
-        item_in_storage = project_in_storage.data.filter(item => item.title === item_title)[0],
-        item_index = project_in_storage.data.indexOf(item_in_storage);
+    // let allProjects = getProject(),
+    //     project_title = e.currentTarget.parentNode.parentNode.parentNode.parentNode.parentNode.firstChild.textContent, // get project containing item
+    //     item_title = e.currentTarget.closest(".todo-item-heading").firstChild.textContent,
+    //     project_in_storage = allProjects.filter(project => project.title === project_title)[0],
+    //     item_in_storage = project_in_storage.data.filter(item => item.title === item_title)[0],
+    //     item_index = project_in_storage.data.indexOf(item_in_storage);
 
-    project_in_storage.data.splice(item_index, 1);
+    // project_in_storage.data.splice(item_index, 1);
     
-    // if (project_in_storage.data.length === 0 && (project_title.toLowerCase() !== "todos" || project_title.toLowerCase() !== "notes")) {
-    //     allProjects.splice(allProjects.indexOf(project_in_storage), 1);
+    // // if (project_in_storage.data.length === 0 && (project_title.toLowerCase() !== "todos" || project_title.toLowerCase() !== "notes")) {
+    // //     allProjects.splice(allProjects.indexOf(project_in_storage), 1);
         
-    // }
+    // // }
 
-    saveProject(allProjects);
-    updateProjectSection(project_title);
-    updateCount();
-    updateProjectsList();
-    return
+    // saveProject(allProjects);
+    // updateProjectSection(project_title);
+    // updateCount();
+    // updateProjectsList();
 }
 
 export function editItem(e) {
-    const allProjects = getProject();
-    console.log(allProjects);
-    console.log(e.target);
+    console.log("edit");
     
-    saveProject(allProjects);
 }

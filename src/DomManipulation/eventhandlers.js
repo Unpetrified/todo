@@ -84,6 +84,8 @@ function toggleCategories(categories) {
             category.classList.add("active");
             
             updateProjectSection(category.getAttribute("id"));
+            
+            getEditDelBtns();
         })
     });
 }
@@ -104,7 +106,7 @@ form.addEventListener("submit", (e) => {
                 todo = new Todo(todo_title, todo_description, due_date);
 
             updateFiles(todo, todo_project_affliation);
-            updateProjectSection("todos");
+            updateProjectSection(todo_project_affliation.toLowerCase());
 
             break;
 
@@ -139,6 +141,7 @@ form.addEventListener("submit", (e) => {
 
     closeForm();
     updateCategories();
+    getEditDelBtns();
 
 })
 
@@ -173,5 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProjectsList();
     updateProjectSection("todos");
     updateCategories();
+    getEditDelBtns();
 });
 
