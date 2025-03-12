@@ -20,29 +20,26 @@ export function updateFiles(data, project_destination) {
 }
 
 export function deleteItem(e) {
-    console.log("Delete");
     
-    // let allProjects = getProject(),
-    //     project_title = e.currentTarget.parentNode.parentNode.parentNode.parentNode.parentNode.firstChild.textContent, // get project containing item
-    //     item_title = e.currentTarget.closest(".todo-item-heading").firstChild.textContent,
-    //     project_in_storage = allProjects.filter(project => project.title === project_title)[0],
-    //     item_in_storage = project_in_storage.data.filter(item => item.title === item_title)[0],
-    //     item_index = project_in_storage.data.indexOf(item_in_storage);
+    let allProjects = getProject(),
+        project_title = e.currentTarget.parentNode.parentNode.parentNode.parentNode.parentNode.firstChild.textContent, // get project containing item
+        item_title = e.currentTarget.closest(".todo-item-heading").firstChild.textContent,
+        project_in_storage = allProjects.filter(project => project.title === project_title)[0],
+        item_in_storage = project_in_storage.data.filter(item => item.title === item_title)[0],
+        item_index = project_in_storage.data.indexOf(item_in_storage);
 
-    // project_in_storage.data.splice(item_index, 1);
+    project_in_storage.data.splice(item_index, 1);
     
-    // // if (project_in_storage.data.length === 0 && (project_title.toLowerCase() !== "todos" || project_title.toLowerCase() !== "notes")) {
-    // //     allProjects.splice(allProjects.indexOf(project_in_storage), 1);
-        
-    // // }
+    let isProjectEmpty = project_in_storage.data.length === 0,
+        isCustomProject = project_title.toLowerCase() !== "todos" && project_title.toLowerCase() !== "notes",
+        section_heading = project_title;
 
-    // saveProject(allProjects);
-    // updateProjectSection(project_title);
-    // updateCount();
-    // updateProjectsList();
-}
-
-export function editItem(e) {
-    console.log("edit");
-    
+    if (isProjectEmpty && isCustomProject) {
+        allProjects.splice(allProjects.indexOf(project_in_storage), 1);
+        section_heading = "todos";
+    }
+    saveProject(allProjects);
+    updateProjectSection(section_heading);
+    updateCount();
+    updateProjectsList();
 }

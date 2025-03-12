@@ -1,4 +1,4 @@
-import { editSvg, deleteSvg } from "./todosvgs";
+import { deleteSvg } from "./todosvgs";
 
 function getLabel(id="", text_content="") {
     const label = document.createElement("label");
@@ -85,9 +85,8 @@ function getSVG(svg_value, id) {
 function getButtons() {
     let div = document.createElement("div");
     div.setAttribute("class", "buttons");
-    let editBtn = getSVG(editSvg, "edit-btn");
     let deleteBtn = getSVG(deleteSvg, "delete-btn");
-    div.append(editBtn, deleteBtn);
+    div.append( deleteBtn);
     return div
 }
 

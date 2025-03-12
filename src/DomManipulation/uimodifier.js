@@ -1,5 +1,6 @@
 import { getProject } from "../AppLogic/localStorageQuery";
 import domGenerator from "./domgenerator";
+import { deleteItem } from "../AppLogic/updatefiles";
 
 const projects_panel = document.querySelector(".projects");
 
@@ -14,6 +15,21 @@ export function updateCount() {
 
 updateCount();
 
+export function toggleCategories(categories = document.querySelectorAll(".category")) {
+    categories.forEach(category => {
+        category.addEventListener("click", (e) => {
+
+            categories.forEach(c => {
+                c.classList.remove("active")
+            })
+
+            category.classList.add("active");
+            
+            updateProjectSection(category.getAttribute("id"));
+            
+        })
+    });
+}
 
 export function updateProjectsList() {
 
@@ -43,6 +59,8 @@ export function updateProjectsList() {
 
         projects_panel.append(div)
     }
+
+    toggleCategories();
 }
 
 updateProjectsList();
@@ -51,7 +69,7 @@ export function updateProjectSection(section_heading) {
 
     let project_list = getProject().filter(project => project.title.toLowerCase() === section_heading.toLowerCase())[0].data;
 
-    switch (section_heading) {
+    switch (section_heading.toLowerCase()) {
         case "todos":
             domGenerator.todos(project_list);
             break;
@@ -64,4 +82,14 @@ export function updateProjectSection(section_heading) {
             domGenerator.todos(project_list, section_heading);
             break;
     }
+
+    getDeleteBtns();
+}
+
+function getDeleteBtns() {
+    let deleteBtns = document.querySelectorAll("#delete-btn");
+    
+    deleteBtns.forEach(deleteBtn => {
+        deleteBtn.addEventListener("click", deleteItem)
+    })
 }
